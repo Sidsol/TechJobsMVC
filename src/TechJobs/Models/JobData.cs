@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Globalization;
 
 namespace TechJobs.Models
 {
@@ -62,6 +63,7 @@ namespace TechJobs.Models
 
                     if (aValue.ToLower().Contains(value.ToLower()))
                     {
+
                         jobs.Add(row);
 
                         // Finding one field in a job that matches is sufficient

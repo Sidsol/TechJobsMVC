@@ -9,7 +9,7 @@
         <br />
         @foreach (KeyValuePair<string, string> item in job)
         {
-            <p> <b>@item.Key:</b> @item.Value </p>
+            <p> <b>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(item.Key):</b> @item.Value </p>
         }
         <br />
     }
