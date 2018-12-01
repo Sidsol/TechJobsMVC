@@ -7,12 +7,32 @@
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
         {
             <span>
-                <input type="radio"
-                       name="searchType"
-                       id="@column.Key"
-                       value="@column.Key"
-                       checked="@column.Key == 'all''" />
-                <label for="@column.Key">@column.Value</label>
+                @if (ViewBag.searchType == null)
+                {
+                    <input type="radio"
+                           name="searchType"
+                           id="@column.Key"
+                           value="@column.Key"
+                           checked="checked" />
+                    <label for="@column.Key">@column.Value</label>
+                }
+                else if (column.Key == ViewBag.searchType)
+                {
+                    <input type="radio"
+                           name="searchType"
+                           id="@column.Key"
+                           value="@column.Key"
+                           checked="checked" />
+                    <label for="@column.Key">@column.Value</label>
+                }
+                else
+                {
+                    <input type="radio"
+                           name="searchType"
+                           id="@column.Key"
+                           value="@column.Key" />
+                    <label for="@column.Key">@column.Value</label>
+                }
             </span>
         }
     </p>
@@ -33,13 +53,5 @@
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
     // TODO #2 - Loop over jobs dictionary and display all job fields
-    @foreach (var job in ViewBag.jobs)
-    {
-        <br />
-        @foreach (KeyValuePair<string, string> item in job)
-        {
-            <p> <b>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(item.Key):</b> @item.Value </p>
-        }
-        <br />
-    }
+    @await Html.PartialAsync("/Views/Shared/_JobPostings.cshtml")
 }

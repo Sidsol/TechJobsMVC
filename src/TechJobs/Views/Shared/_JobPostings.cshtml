@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+
+@foreach (var job in ViewBag.jobs)
+{
+    <br />
+    @foreach (KeyValuePair<string, string> item in job)
+    {
+        @if (item.Key == "name")
+        {
+            <p>
+                <b>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(item.Key):</b>
+                @item.Value
+            </p>
+
+        }
+        else
+        {
+            <p>
+                <b>@System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(item.Key):</b>
+                <a asp-controller="List" asp-action="Jobs" asp-route-column="@item.Key"
+                   asp-route-value="@item.Value">@item.Value</a>
+            </p>
+        }
+    }
+    <br />
+}
