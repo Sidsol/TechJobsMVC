@@ -5,12 +5,12 @@ using TechJobs.Models;
 
 namespace TechJobs.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : TechJobsController
     {
-        //static public List<Dictionary<string, string>> searchResults;
+        static public List<Dictionary<string, string>> searchResults;
         public IActionResult Index()
         {
-            ViewBag.columns = ListController.columnChoices;
+            //ViewBag.columns = ListController.columnChoices;
             ViewBag.title = "Search";
             return View();
         }

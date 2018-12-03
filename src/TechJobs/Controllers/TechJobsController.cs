@@ -8,9 +8,12 @@ namespace TechJobs.Controllers
 {
     public class TechJobsController : Controller
     {
-        static Dictionary<string, string> actionChoices = new Dictionary<string, string>;
-        /*static ActionChoices()
+        internal static Dictionary<string, string> actionChoices = new Dictionary<string, string>();
+        internal static Dictionary<string, string> columnChoices = new Dictionary<string, string>();
+        static TechJobsController()
         {
+            actionChoices.Add("search", "Search");
+            actionChoices.Add("list", "List");
 
             columnChoices.Add("core competency", "Skill");
             columnChoices.Add("employer", "Employer");
@@ -19,11 +22,27 @@ namespace TechJobs.Controllers
             columnChoices.Add("all", "All");
         }
 
-        public override ViewResult View();
-
-        public IActionResult Index()
+        public override ViewResult View()
         {
-            return View();
-        }*/
+            ViewBag.actions = actionChoices;
+            ViewBag.columns = columnChoices;
+
+            return base.View();
+            //return View();
+        }
+        public override ViewResult View(string viewName)
+        {
+            ViewBag.actions = actionChoices;
+            ViewBag.columns = columnChoices;
+            ViewBag.Title = viewName;
+
+            //return base.View(viewName);
+            return base.View(viewName);
+        }
+
+        //public IActionResult Index()
+        //{
+        //    return base.View();
+        //}
     }
 }
